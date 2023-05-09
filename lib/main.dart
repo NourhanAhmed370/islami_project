@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         routes: {
           HomeScreen.routeName: (buildContext) => HomeScreen(),
           SplashScreen.routeName: (buildContext) => SplashScreen(),
-          SuraDetailsScreen.routeName: (buildContext) => SuraDetailsScreen()
+          SuraDetailsScreen.routeName: (buildContext) => SuraDetailsScreen(),
+
         },
       theme: ThemeData(
           progressIndicatorTheme:

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/home/hadeth/hadeth_tab.dart';
 import 'package:untitled2/home/quran/quran_tab.dart';
 import 'package:untitled2/home/radio/radio_tab.dart';
 import 'package:untitled2/home/tasbeh/tasbeh_tab.dart';
 
-import 'hadeth/hadeth_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,9 +14,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int selectedTabIndex = 0;
   @override
   Widget build(BuildContext context) {
-    int selectedTabIndex = 0;
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
@@ -56,5 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-  List<Widget> tabs = [QuranTab(), HadethTab(), TasbehTab(), RadioTab()];
+  List<Widget> tabs = [
+    QuranTab(),
+    HadethTab(),
+    TasbehTab(),
+    RadioTab()
+  ];
 }

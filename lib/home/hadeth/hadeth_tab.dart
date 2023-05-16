@@ -1,129 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:untitled2/home/hadeth/hadeth_name.dart';
+import 'package:untitled2/home/hadeth/hadeth_title.dart';
 
 import '../quran/verse_name.dart';
 
-class HadethTab extends StatelessWidget {
+class HadethTab extends StatefulWidget {
+  @override
+  State<HadethTab> createState() => _HadethTabState();
+}
+
+class _HadethTabState extends State<HadethTab> {
+  List<Hadeth> allHadethList = [];
+
   @override
   Widget build(BuildContext context) {
-        List<String> names = [
-        "الفاتحه",
-        "البقرة",
-        "آل عمران",
-        "النساء",
-        "المائدة",
-        "الأنعام",
-        "الأعراف",
-        "الأنفال",
-        "التوبة",
-        "يونس",
-        "هود",
-        "يوسف",
-        "الرعد",
-        "إبراهيم",
-        "الحجر",
-        "النحل",
-        "الإسراء",
-        "الكهف",
-        "مريم",
-        "طه",
-        "الأنبياء",
-        "الحج",
-        "المؤمنون",
-        "النّور",
-        "الفرقان",
-        "الشعراء",
-        "النّمل",
-        "القصص",
-        "العنكبوت",
-        "الرّوم",
-        "لقمان",
-        "السجدة",
-        "الأحزاب",
-        "سبأ",
-        "فاطر",
-        "يس",
-        "الصافات",
-        "ص",
-        "الزمر",
-        "غافر",
-        "فصّلت",
-        "الشورى",
-        "الزخرف",
-        "الدّخان",
-        "الجاثية",
-        "الأحقاف",
-        "محمد",
-        "الفتح",
-        "الحجرات",
-        "ق",
-        "الذاريات",
-        "الطور",
-        "النجم",
-        "القمر",
-        "الرحمن",
-        "الواقعة",
-        "الحديد",
-        "المجادلة",
-        "الحشر",
-        "الممتحنة",
-        "الصف",
-        "الجمعة",
-        "المنافقون",
-        "التغابن",
-        "الطلاق",
-        "التحريم",
-        "الملك",
-        "القلم",
-        "الحاقة",
-        "المعارج",
-        "نوح",
-        "الجن",
-        "المزّمّل",
-        "المدّثر",
-        "القيامة",
-        "الإنسان",
-        "المرسلات",
-        "النبأ",
-        "النازعات",
-        "عبس",
-        "التكوير",
-        "الإنفطار",
-        "المطفّفين",
-        "الإنشقاق",
-        "البروج",
-        "الطارق",
-        "الأعلى",
-        "الغاشية",
-        "الفجر",
-        "البلد",
-        "الشمس",
-        "الليل",
-        "الضحى",
-        "الشرح",
-        "التين",
-        "العلق",
-        "القدر",
-        "البينة",
-        "الزلزلة",
-        "العاديات",
-        "القارعة",
-        "التكاثر",
-        "العصر",
-        "الهمزة",
-        "الفيل",
-        "قريش",
-        "الماعون",
-        "الكوثر",
-        "الكافرون",
-        "النصر",
-        "المسد",
-        "الإخلاص",
-        "الفلق",
-        "الناس"
-        ];
+    if(allHadethList.isEmpty)
+      readHadeth();
       return Column(
         children: [
-          Image.asset('assets/images/quran_header_logo.png'),
+          Image.asset('assets/images/hadeth_icon.png'),
           Container(
             width: double.infinity,
             height: 2,
@@ -131,7 +27,7 @@ class HadethTab extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 4),
           ),
           Text(
-            'Verse Name',
+            'Hadeth Number',
             style: TextStyle(fontSize: 24),
           ),
           Container(
@@ -141,11 +37,13 @@ class HadethTab extends StatelessWidget {
             margin: EdgeInsets.only(top: 4),
           ),
           Expanded(
-            child: ListView.separated(
+            child:allHadethList.isEmpty?
+            Center(child: CircularProgressIndicator(),):
+            ListView.separated(
               itemBuilder: (buildContext, index) {
-                return VerseNameWidget(names[index], index);
+                return HadethTitleWidget(allHadethList[index]);
               },
-              itemCount: names.length,
+              itemCount: allHadethList.length,
               separatorBuilder: (buildContext, index) {
                 return Container(
                   color: Theme.of(context).primaryColor,
@@ -158,5 +56,24 @@ class HadethTab extends StatelessWidget {
           )
         ],
     );
+  }
+
+  void readHadeth() async{
+    List<Hadeth> hadethList = [];
+    String fileContent = await rootBundle.loadString('assets/files/ahadeth.txt');
+    List<String> splitedContent = fileContent.split("#");
+    for(int i =0;i<splitedContent.length;i++){
+      String singleHadethContent = splitedContent[i];
+      List<String> lines = singleHadethContent.trim().split('\n');
+      String title = lines[0];
+      lines.removeAt(0);
+      String content = lines.join('\n');
+      Hadeth hadeth = Hadeth(title, content);
+      hadethList.add(hadeth);
+    }
+    await Future.delayed(Duration(seconds: 4));
+    allHadethList = hadethList;
+    setState(() {
+    });
   }
 }

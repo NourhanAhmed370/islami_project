@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/hadeth_details/hadeth_details.dart';
 import 'package:untitled2/splash_screen/splash.dart';
 import 'package:untitled2/sura_details/sura_details.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
           HomeScreen.routeName: (buildContext) => HomeScreen(),
           SplashScreen.routeName: (buildContext) => SplashScreen(),
           SuraDetailsScreen.routeName: (buildContext) => SuraDetailsScreen(),
-
+          HadethDetailsScreen.routeName:(buildContext)=> HadethDetailsScreen(),
         },
       theme: ThemeData(
           progressIndicatorTheme:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../home/home_screen.dart';
+import '../my_theme_data.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,7 +14,8 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Image.asset(
-          'assets/images/splash_background.png',
+          MyTheme.themeMode==ThemeMode.light?
+          'assets/images/splash_background.png':'assets/images/darksplash.png',
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.fill,

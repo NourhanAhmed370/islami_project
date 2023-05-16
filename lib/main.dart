@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/hadeth_details/hadeth_details.dart';
+import 'package:untitled2/my_theme_data.dart';
 import 'package:untitled2/splash_screen/splash.dart';
 import 'package:untitled2/sura_details/sura_details.dart';
 
@@ -23,22 +24,8 @@ class MyApp extends StatelessWidget {
           SuraDetailsScreen.routeName: (buildContext) => SuraDetailsScreen(),
           HadethDetailsScreen.routeName:(buildContext)=> HadethDetailsScreen(),
         },
-      theme: ThemeData(
-          progressIndicatorTheme:
-          ProgressIndicatorThemeData(color: Color(0xFFB7935F)),
-          cardColor: Colors.white,
-          primaryColor: Color(0xFFB7935F),
-          scaffoldBackgroundColor: Colors.transparent,
-          appBarTheme: AppBarTheme(
-              color: Colors.transparent,
-              elevation: 0,
-              centerTitle: true,
-              titleTextStyle: TextStyle(color: Color(0xFF242424), fontSize: 30),
-              iconTheme: IconThemeData(color: Colors.black)),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.white,
-          )),
+      theme: MyTheme.lightTheme,
+      darkTheme: MyTheme.darkTheme,
     );
   }
 }

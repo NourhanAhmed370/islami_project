@@ -127,17 +127,17 @@ class QuranTab extends StatelessWidget {
         Container(
           width: double.infinity,
           height: 2,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).accentColor,
           margin: EdgeInsets.only(bottom: 4),
         ),
         Text(
           'Verse Name',
-          style: TextStyle(fontSize: 24),
+          style: Theme.of(context).textTheme.headline5,
         ),
         Container(
           width: double.infinity,
           height: 2,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).accentColor,
           margin: EdgeInsets.only(top: 4),
         ),
         Expanded(
@@ -148,7 +148,7 @@ class QuranTab extends StatelessWidget {
             itemCount: names.length,
             separatorBuilder: (buildContext, index) {
               return Container(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 width: double.infinity,
                 height: 1,
                 margin: EdgeInsets.symmetric(horizontal: 24),

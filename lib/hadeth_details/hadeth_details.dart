@@ -4,6 +4,8 @@ import 'package:untitled2/hadeth_details/hadeth_content.dart';
 import 'package:untitled2/home/hadeth/hadeth_name.dart';
 import 'package:untitled2/sura_details/verse_content.dart';
 
+import '../my_theme_data.dart';
+
 class HadethDetailsScreen extends StatefulWidget {
   static const String routeName = 'hadeth-details';
 
@@ -19,7 +21,8 @@ class _HadethDetailsScreen extends State<HadethDetailsScreen> {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/images/main_background.png'),
+                image: AssetImage(MyTheme.themeMode==ThemeMode.light?
+                'assets/images/main_background.png':'assets/images/darkPg.png'),
                 fit: BoxFit.fill)),
         child: Scaffold(
           appBar: AppBar(
@@ -33,11 +36,11 @@ class _HadethDetailsScreen extends State<HadethDetailsScreen> {
                   margin: EdgeInsets.symmetric(vertical: 48, horizontal: 12),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24)),
-                  color: Colors.white,
+                  color: Theme.of(context).cardColor,
                   child: SingleChildScrollView(
                     child: Text(args.content,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 24),),
+                      style: Theme.of(context).textTheme.bodyText2,),
                   )
               ),
               ),

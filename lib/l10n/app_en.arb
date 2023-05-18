@@ -5,5 +5,10 @@
   "quran" : "Quran",
   "hadeth" : "Hadeth",
   "tasbeh" : "Tasbeh",
-  "radio" : "Radio"
+  "radio" : "Radio",
+  "settings" : "Settings",
+  "dark" : "Dark",
+  "light" : "Light",
+  "language" : "Language",
+  "theme" : "Theme"
 }

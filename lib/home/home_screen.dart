@@ -4,7 +4,11 @@ import 'package:untitled2/home/quran/quran_tab.dart';
 import 'package:untitled2/home/radio/radio_tab.dart';
 import 'package:untitled2/home/tasbeh/tasbeh_tab.dart';
 import 'package:untitled2/my_theme_data.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:untitled2/providers/settings_providers.dart';
+
+import '../settings/settings_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -19,12 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedTabIndex = 0;
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(
-                MyTheme.themeMode==ThemeMode.light?
-                  'assets/images/main_background.png':'assets/images/darkPg.png'),
+              image: AssetImage(provider.getBackgroundImage()),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
@@ -54,6 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/radio.png')),
                 label: AppLocalizations.of(context)!.radio),
+            BottomNavigationBarItem(
+                backgroundColor: Theme.of(context).primaryColor,
+                icon: Icon(Icons.settings),
+                label: AppLocalizations.of(context)!.settings),
           ],
         ),
         body: tabs[selectedTabIndex],
@@ -64,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     QuranTab(),
     HadethTab(),
     TasbehTab(),
-    RadioTab()
+    RadioTab(),
+    SettingsTab()
   ];
 }

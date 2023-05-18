@@ -4,6 +4,7 @@ import 'package:untitled2/home/quran/quran_tab.dart';
 import 'package:untitled2/home/radio/radio_tab.dart';
 import 'package:untitled2/home/tasbeh/tasbeh_tab.dart';
 import 'package:untitled2/my_theme_data.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Islami'),
+          title: Text(AppLocalizations.of(context)!.app_title),
         ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectedTabIndex,
@@ -40,19 +41,19 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/quran.png')),
-                label: 'Quran'),
+                label: AppLocalizations.of(context)!.quran),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/hadeth.png')),
-                label: 'Hadeth'),
+                label: AppLocalizations.of(context)!.hadeth),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/sebha.png')),
-                label: 'Tasbeh'),
+                label: AppLocalizations.of(context)!.tasbeh),
             BottomNavigationBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: ImageIcon(AssetImage('assets/images/radio.png')),
-                label: 'Radio'),
+                label: AppLocalizations.of(context)!.radio),
           ],
         ),
         body: tabs[selectedTabIndex],

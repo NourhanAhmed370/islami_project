@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/home/quran/verse_name.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QuranTab extends StatelessWidget {
   List<String> names = [
@@ -131,7 +132,7 @@ class QuranTab extends StatelessWidget {
           margin: EdgeInsets.only(bottom: 4),
         ),
         Text(
-          'Verse Name',
+          AppLocalizations.of(context)!.chapter_name,
           style: Theme.of(context).textTheme.headline5,
         ),
         Container(

@@ -5,5 +5,10 @@
   "quran" : "قرأن",
   "hadeth" : "حديث",
   "tasbeh" : "تسبيح",
-  "radio" : "راديو"
+  "radio" : "راديو",
+  "settings" : "الضبط",
+  "dark" : "معتم",
+  "light" : "مضئ",
+  "language" : "اللغة",
+  "theme" : "الاضاءة"
 }

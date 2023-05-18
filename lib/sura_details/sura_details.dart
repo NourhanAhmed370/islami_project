@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled2/providers/settings_providers.dart';
 import 'package:untitled2/sura_details/verse_content.dart';
 
 import '../my_theme_data.dart';
@@ -16,6 +18,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     // casting
     var args =
     ModalRoute.of(context)?.settings.arguments as SuraDetailsScreenArgs;
@@ -25,8 +28,7 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(MyTheme.themeMode==ThemeMode.light?
-                'assets/images/main_background.png':'assets/images/darkPg.png'),
+                image: AssetImage(provider.getBackgroundImage()),
                 fit: BoxFit.fill)),
         child: Scaffold(
           appBar: AppBar(

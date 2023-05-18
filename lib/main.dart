@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:localization/localization.dart';
 import 'package:untitled2/hadeth_details/hadeth_details.dart';
 import 'package:untitled2/my_theme_data.dart';
+import 'package:untitled2/providers/settings_providers.dart';
 import 'package:untitled2/splash_screen/splash.dart';
 import 'package:untitled2/sura_details/sura_details.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'home/home_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  runApp(ChangeNotifierProvider(
+      create: (buildContext) => SettingsProvider(), child: MyApp()));
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -18,6 +26,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     return MaterialApp(
         initialRoute: SplashScreen.routeName,
         routes: {
@@ -26,8 +35,10 @@ class MyApp extends StatelessWidget {
           SuraDetailsScreen.routeName: (buildContext) => SuraDetailsScreen(),
           HadethDetailsScreen.routeName:(buildContext)=> HadethDetailsScreen(),
         },
+      debugShowCheckedModeBanner: false,
       theme: MyTheme.lightTheme,
       darkTheme: MyTheme.darkTheme,
+      themeMode: provider.themeMode,
       localizationsDelegates: const [
         // delegate from flutter_localization
         AppLocalizations.delegate,
@@ -41,7 +52,7 @@ class MyApp extends StatelessWidget {
         Locale('en', 'US'),
         Locale('ar', 'EG'),
       ],
-      locale: Locale('ar'),
+      locale: Locale(provider.languageCode),
     );
   }
 }
